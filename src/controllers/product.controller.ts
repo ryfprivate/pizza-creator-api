@@ -15,14 +15,16 @@ import {
   put,
   del,
   requestBody,
+  HttpErrors,
 } from '@loopback/rest';
 import {Product} from '../models';
 import {ProductRepository} from '../repositories';
+import IfValidUrl from '../helpers/IfValidUrl';
 
 export class ProductController {
   constructor(
     @repository(ProductRepository)
-    public productRepository : ProductRepository,
+    public productRepository: ProductRepository,
   ) {}
 
   @post('/products', {
@@ -34,6 +36,16 @@ export class ProductController {
     },
   })
   async create(@requestBody() product: Product): Promise<Product> {
+    const validTypes = ['TOPPING', 'SIZE'];
+    if (!validTypes.includes(product.type)) {
+      throw new HttpErrors.BadRequest('INVALID_TYPE');
+    }
+    if (product.price < 0.0) {
+      throw new HttpErrors.BadRequest('INVALID_PRICE: price must be positive');
+    }
+    if (!IfValidUrl(product.imgUrl)) {
+      throw new HttpErrors.BadRequest('INVALID_URL');
+    }
     return await this.productRepository.create(product);
   }
 
