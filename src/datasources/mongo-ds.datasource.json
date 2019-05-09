@@ -2,9 +2,9 @@
   "name": "mongoDS",
   "connector": "mongodb",
   "url": "",
-  "host": "",
-  "port": 0,
-  "user": "",
-  "password": "",
-  "database": ""
+  "host": "ds153766.mlab.com",
+  "port": 53766,
+  "user": "adminRay",
+  "password": "qwe123",
+  "database": "pizza-creator-database"
 }
