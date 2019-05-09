@@ -18,7 +18,7 @@ export class Product extends Entity {
     type: 'string',
     required: true,
   })
-  type: string;
+  type: 'TOPPING' | 'SIZE';
 
   @property({
     type: 'number',
