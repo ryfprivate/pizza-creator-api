@@ -1,6 +1,6 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model({settings: {"strict":false}})
+@model({settings: {strict: false}})
 export class Product extends Entity {
   @property({
     type: 'string',
@@ -10,24 +10,30 @@ export class Product extends Entity {
 
   @property({
     type: 'string',
+    required: true,
   })
-  name?: string;
+  name: string;
 
   @property({
     type: 'string',
+    required: true,
   })
-  type?: string;
+  type: string;
 
   @property({
     type: 'number',
+    required: true,
+    default: 0,
   })
-  price?: number;
+  price: number;
 
   @property({
     type: 'string',
-    default: https://upload.wikimedia.org/wikipedia/commons/1/16/Deletion_icon.svg,
+    required: true,
+    default:
+      'https://upload.wikimedia.org/wikipedia/commons/1/16/Deletion_icon.svg',
   })
-  imgUrl?: string;
+  imgUrl: string;
 
   // Define well-known properties here
 
